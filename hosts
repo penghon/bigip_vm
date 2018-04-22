@@ -1,21 +1,18 @@
-all:
-  children:
-    BIGIP:
-      hosts:
-        student1_1 ansible_host=172.28.28.110
-        student1_2 ansible_host=172.28.28.111
-        student2_1 ansible_host=172.28.28.120
-        student2_2 ansible_host=172.28.28.121
-        student3_1 ansible_host=172.28.28.130
-        student3_2 ansible_host=172.28.28.131
-        student4_1 ansible_host=172.28.28.140
-        student4_2 ansible_host=172.28.28.141
-        student5_1 ansible_host=172.28.28.150
-        student5_2 ansible_host=172.28.28.151
-        student6_1 ansible_host=172.28.28.160
-        student6_2 ansible_host=172.28.28.161
-        student7_1 ansible_host=172.28.28.170
-        student7_2 ansible_host=172.28.28.171
-        student8_1 ansible_host=172.28.28.180
-        student8_2 ansible_host=172.28.28.181
+[BIGIP]
+student1_1 ansible_host=172.28.28.110
+student1_2 ansible_host=172.28.28.111
+student2_1 ansible_host=172.28.28.120
+student2_2 ansible_host=172.28.28.121
+student3_1 ansible_host=172.28.28.130
+student3_2 ansible_host=172.28.28.131
+student4_1 ansible_host=172.28.28.140
+student4_2 ansible_host=172.28.28.141
+student5_1 ansible_host=172.28.28.150
+student5_2 ansible_host=172.28.28.151
+student6_1 ansible_host=172.28.28.160
+student6_2 ansible_host=172.28.28.161
+student7_1 ansible_host=172.28.28.170
+student7_2 ansible_host=172.28.28.171
+student8_1 ansible_host=172.28.28.180
+student8_2 ansible_host=172.28.28.181
 
