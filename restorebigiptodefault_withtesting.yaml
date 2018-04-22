@@ -1,0 +1,39 @@
+---
+
+- name: Restoration the BIGIPs after Day X of Ansible Training
+  hosts: all
+  gather_facts: no
+  connection: local
+
+  environment:
+    F5_SERVER: "{{ ansible_host }}"
+    F5_USER: "admin"
+    F5_PASSWORD: "admin"
+    F5_VALIDATE_CERTS: no
+
+  tasks:
+    - name: Load saved UCS
+      bigip_ucs:
+        ucs: "/tmp/{{ inventory_hostname }}_baseline.ucs"
+        state: installed
+    - name: Delete bigip.license file
+      bigip_raw:
+       commands: rm -rf /config/bigip.license
+    - name: Reboot the BIGIP after restoration of UCS
+      bigip_command:
+        commands: tmsh reboot
+      ignore_errors: True
+    - name: Waiting for BIGIP to finish rebooting
+      pause:
+        seconds: 90
+    - name: Wait for BIGIP to be actually ready
+      bigip_wait:
+    - name: Gather BIGIP facts
+      bigip_facts:
+        include:
+          - system_info
+      register: result
+    - name: Check that BIGIP is restored to default
+      debug:
+        msg: "{{ inventory_hostname }} has been restored to default!"
+      when: result.ansible_facts.system_info.product_information.product_features == []
